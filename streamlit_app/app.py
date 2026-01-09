@@ -66,7 +66,7 @@ if upload_image:
         f.write(upload_image.getbuffer())
 
     st.markdown("### 🖼 Uploaded Image")
-    st.image(upload_image, caption="Uploaded Vehicle Image", width="stretch")
+    st.image(upload_image, caption="Uploaded Vehicle Image", use_container_width=True)
 
     with st.spinner("🔍 Analyzing damage..."):
         prediction = predict(img_path)
