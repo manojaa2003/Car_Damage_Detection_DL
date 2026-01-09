@@ -2,6 +2,7 @@ from PIL import Image
 import torch
 import torch.nn as nn
 from torchvision import models, transforms
+import os
 
 class_names = [
     'Front_Breakage',
@@ -56,8 +57,10 @@ def predict(image_path):
 
     if train_model is None:
         train_model = CarClassifierResNet()
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        MODEL_PATH = os.path.join(BASE_DIR, "model", "saved_model.pth")
         train_model.load_state_dict(
-            torch.load("model/saved_model.pth", map_location=torch.device("cpu"))
+            torch.load(MODEL_PATH, map_location=torch.device("cpu"))
         )
         train_model.eval()
 
